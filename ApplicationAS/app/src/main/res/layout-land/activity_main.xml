@@ -8,8 +8,8 @@
     tools:context=".MainActivity">
 
     <ScrollView
-        android:layout_width="411dp"
-        android:layout_height="683dp"
+        android:layout_width="673dp"
+        android:layout_height="362dp"
         android:layout_marginTop="4dp"
         android:fillViewport="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +26,8 @@
 
             <CalendarView
                 android:id="@+id/CalendarView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="536dp"
+                android:layout_height="261dp"
                 android:layout_marginTop="28dp"
                 android:minDate="01/01/2000"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +37,8 @@
 
             <Button
                 android:id="@+id/Button1"
-                android:layout_width="283dp"
-                android:layout_height="57dp"
+                android:layout_width="487dp"
+                android:layout_height="59dp"
                 android:layout_marginTop="12dp"
                 android:onClick="Button1_Click"
                 android:text="Отметить дату и время"
@@ -49,8 +49,8 @@
 
             <EditText
                 android:id="@+id/EditText1"
-                android:layout_width="223dp"
-                android:layout_height="53dp"
+                android:layout_width="547dp"
+                android:layout_height="51dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:hint="Name My Case"
@@ -61,19 +61,20 @@
 
             <EditText
                 android:id="@+id/TextBox_Time"
-                android:layout_width="214dp"
-                android:layout_height="51dp"
-                android:layout_marginTop="13dp"
+                android:layout_width="545dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="16dp"
                 android:ems="10"
                 android:hint="00: 00 - 09: 00"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.484"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CalendarView1" />
 
             <EditText
                 android:id="@+id/EditTextTextMultiLine1"
-                android:layout_width="256dp"
+                android:layout_width="548dp"
                 android:layout_height="128dp"
                 android:layout_marginTop="24dp"
                 android:ems="10"
@@ -86,8 +87,8 @@
 
             <ScrollView
                 android:id="@+id/ScrollViewTable"
-                android:layout_width="397dp"
-                android:layout_height="345dp"
+                android:layout_width="606dp"
+                android:layout_height="370dp"
                 android:layout_marginTop="28dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -105,13 +106,13 @@
                         android:weightSum="1">
 
                         <TextView
-                            android:layout_width="193dp"
+                            android:layout_width="269dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="Name Case" />
 
                         <TextView
-                            android:layout_width="185dp"
+                            android:layout_width="334dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="Start Time" />

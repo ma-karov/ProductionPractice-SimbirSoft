@@ -1,6 +1,7 @@
 package com.example.myapplication1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -20,8 +21,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
-    private final ListJobs List_Jobs = new ListJobs(); private Boolean IS_OneElement_ListJobs = false; private final short[] Array_Date = { 1970, 0, 0 };
+    private final ListJobs List_Jobs = new ListJobs(); private Boolean IS_OneElement_ListJobs = false; private final short[] Array_Date = TimeStamp.GetDate_ToDay();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,27 +63,26 @@ public class MainActivity extends AppCompatActivity {
     private short StringToNumber(String StringValue) { StringValue += "\0"; Byte i = 1; short NumberValue = 0;
     for (char Char = StringValue.charAt(0); Char != '\0'; Char = StringValue.charAt(i++)) NumberValue = (short) ((Char - '0' ) + NumberValue*10); return NumberValue; }
 
-    private void ShowPopAp() { final Toast PopAp = Toast.makeText(getApplicationContext(), "Неверно введены данные. Проверьте их", Toast.LENGTH_SHORT); PopAp.setGravity(Gravity.CENTER, 0, 0); PopAp.show(); }
+    private void ShowPopAp(final String StringMessage, final Byte Switch) {
+    switch(Switch) {
+    case 1: { final Toast PopAp = Toast.makeText(getApplicationContext(), StringMessage, Toast.LENGTH_SHORT); PopAp.setGravity(Gravity.CENTER, 0, 0); PopAp.show(); break; }
+    case 2: { final AlertDialog.Builder AlertDialogBuilder = new AlertDialog.Builder(this); AlertDialogBuilder.setTitle(R.string.BusyTime); AlertDialogBuilder.setMessage(StringMessage); AlertDialogBuilder.create().show(); break; } } }
 
     private void GetData_CalendarView() { final EditText EditTextView_NameJob = findViewById(R.id.EditText1), TextBox_Time = findViewById(R.id.TextBox_Time), EditTextView_DescriptionJob = findViewById(R.id.EditTextTextMultiLine1);
     final String[] String_oClock = CorrectEnterClock(TextBox_Time.getText() + ""); final String Name_Job = EditTextView_NameJob.getText() + "", Description_Job = EditTextView_DescriptionJob.getText() + "";
-    if (CorrectStandardClock(String_oClock) && Name_Job != "" && Description_Job != "") { ListJobs ListJob;
+    if (CorrectStandardClock(String_oClock) && Name_Job != "" && Description_Job != "")
 
-    if (IS_OneElement_ListJobs) { final ListJobs Append_ListJob = List_Jobs.AppendRecord();
+    if (IS_OneElement_ListJobs) { final String MessageDialog = List_Jobs.ISRecord(new short[] { StringToNumber(String_oClock[0]), StringToNumber(String_oClock[1]), StringToNumber(String_oClock[2]), StringToNumber(String_oClock[3]) }, Array_Date);
+    if (MessageDialog != "") ShowPopAp(MessageDialog, (byte) 2); else { final ListJobs Append_ListJob = List_Jobs.AppendRecord();
     Append_ListJob.date_start.SetHour((byte) StringToNumber(String_oClock[0])).SetMinute((byte) StringToNumber(String_oClock[1]));
     Append_ListJob.date_finish.SetHour((byte) StringToNumber(String_oClock[2])).SetMinute((byte) StringToNumber(String_oClock[3]));
     Append_ListJob.date_start.SetYear(Array_Date[0]).SetMonth((byte) Array_Date[1]).SetDay((byte) Array_Date[2]);
-    Append_ListJob.date_finish.SetYear(Array_Date[0]).SetMonth((byte) Array_Date[1]).SetDay((byte) Array_Date[2]); Append_ListJob.Name = Name_Job; List_Jobs.Description = Description_Job; ListJob = Append_ListJob; } else { IS_OneElement_ListJobs = true;
+    Append_ListJob.date_finish.SetYear(Array_Date[0]).SetMonth((byte) Array_Date[1]).SetDay((byte) Array_Date[2]); Append_ListJob.Name = Name_Job; Append_ListJob.Description = Description_Job; AppendRecordInTable( new String[] { Name_Job, Append_ListJob.date_start.ToString((byte) 3) } ); } } else { IS_OneElement_ListJobs = true;
     List_Jobs.date_start.SetHour((byte) StringToNumber(String_oClock[0])).SetMinute((byte) StringToNumber(String_oClock[1]));
     List_Jobs.date_finish.SetHour((byte) StringToNumber(String_oClock[2])).SetMinute((byte) StringToNumber(String_oClock[3]));
     List_Jobs.date_start.SetYear(Array_Date[0]).SetMonth((byte) Array_Date[1]).SetDay((byte) Array_Date[2]);
-    List_Jobs.date_finish.SetYear(Array_Date[0]).SetMonth((byte) Array_Date[1]).SetDay((byte) Array_Date[2]); List_Jobs.Name = Name_Job; List_Jobs.Description = Description_Job; ListJob = List_Jobs; } //Array_Date[0] = 1970; Array_Date[1] = 0; Array_Date[2] = 0;
-
-    final String[] List = { ListJob.Name, ListJob.date_start.ToString((byte) 3) };
-//    for (final ListJobs ListJob : List_Jobs.GetAllRecords()) { List[i++] = ListJob.Name; List[i++] = ListJob.Description; }
-
-    AppendRecordInTable(List); } else ShowPopAp();
-//    EditTextView_DescriptionJob.setText(1 + ""); }
+    List_Jobs.date_finish.SetYear(Array_Date[0]).SetMonth((byte) Array_Date[1]).SetDay((byte) Array_Date[2]); List_Jobs.Name = Name_Job; List_Jobs.Description = Description_Job; AppendRecordInTable( new String[] { Name_Job, List_Jobs.date_start.ToString((byte) 3) } );
+    } else ShowPopAp("Неверно введены данные. Проверьте их", (byte) 1);
 //    Log.d("Calendar", "Job");
     }
 

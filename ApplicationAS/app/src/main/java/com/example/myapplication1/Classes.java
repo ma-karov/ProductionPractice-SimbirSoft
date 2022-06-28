@@ -1,6 +1,6 @@
 package com.example.myapplication1;
 
-import android.util.EventLogTags;
+import java.util.Calendar;
 
 public class Classes {}
 
@@ -22,8 +22,15 @@ class ListJobs {
     public ListJobs[] GetAllRecords() { ListJobs[] List_Jobs = new ListJobs[CountRecord]; ListJobs Record = this;
     for (Short i = 0; i < CountRecord;) { List_Jobs[i++] = Record; Record = Record.NextRecordJob; } return List_Jobs; }
 
-    public Boolean ISRecord(final Short[] Array_oClock, final Short[] Array_Date) { ListJobs[] List_Jobs = new ListJobs[CountRecord]; ListJobs Record = this;
-    for (Short i = 0; i < CountRecord;) { List_Jobs[i++] = Record; Record = Record.NextRecordJob; } return true; }
+    public String ISRecord(final short[] Array_oClock, final short[] Array_Date) { ListJobs Record = this;
+    do { final TimeStamp RecordDS = Record.date_start, RecordDF = Record.date_finish;
+        if (Array_Date[0] == RecordDS.GetYear() && Array_Date[1] == RecordDS.GetMonth() && Array_Date[2] == RecordDS.GetDay() && (
+        BETWEEN(Array_oClock[0], (short) RecordDS.GetHour(), (short) RecordDF.GetHour()) &&
+        BETWEEN(Array_oClock[1], (short) RecordDS.GetMinute(), (short) RecordDF.GetMinute()) ||
+        BETWEEN(Array_oClock[2], (short) RecordDS.GetHour(), (short) RecordDF.GetHour()) &&
+        BETWEEN(Array_oClock[3], (short) RecordDS.GetMinute(), (short) RecordDF.GetMinute()))) return Record.Name + "\n" + RecordDS.ToString((byte) 3) + " - " + RecordDF.ToString((byte) 2); Record = Record.NextRecordJob; } while (Record != null); return ""; }
+
+    private static Boolean BETWEEN(final Short Value1, final Short Value2, final Short Value3) { if (Value1 >= Value2 && Value1 <= Value3) return true; return false; }
 
 }
 
@@ -43,10 +50,13 @@ class TimeStamp {
 
     public String ToString(final Byte Switch) {
     switch(Switch) {
-        case 1: return DateToStandart(Day) + "-" + DateToStandart(Month) + "-" + Year;
-        case 2: return DateToStandart(Hour) + ": " + DateToStandart(Minute);
+        case 1: return DateToStandard(Day) + "-" + DateToStandard(Month) + "-" + Year;
+        case 2: return DateToStandard(Hour) + ": " + DateToStandard(Minute);
         case 3: return ToString((byte) 1) + " " + ToString((byte) 2);
     } return ""; }
 
-    private String DateToStandart(final Byte Number) { if (Number < 10) return "0" + Number; return Number + ""; }
+    public static short[] GetDate_ToDay() { final Calendar ToDayDate = Calendar.getInstance(); return new short[] { (short) ToDayDate.get(Calendar.YEAR), (short) (ToDayDate.get(Calendar.MONTH) + 1), (short) ToDayDate.get(Calendar.DAY_OF_MONTH) }; }
+
+    private String DateToStandard(final Byte Number) { if (Number < 10) return "0" + Number; return Number + ""; }
 }
+

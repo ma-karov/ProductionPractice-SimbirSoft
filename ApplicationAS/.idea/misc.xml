@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Languages-Programming/CodeBlocks/Android Studio/HomeWork/AllMyProjects/ApplicationAS/app/src/main/res/layout-land/activity_main.xml" value="0.35104166666666664" />
+        <entry key="..\:/Languages-Programming/CodeBlocks/Android Studio/HomeWork/AllMyProjects/ApplicationAS/app/src/main/res/layout-large/activity_main.xml" value="0.25053441641727237" />
+        <entry key="..\:/Languages-Programming/CodeBlocks/Android Studio/HomeWork/AllMyProjects/ApplicationAS/app/src/main/res/layout-normal/activity_main.xml" value="0.25" />
+        <entry key="..\:/Languages-Programming/CodeBlocks/Android Studio/HomeWork/AllMyProjects/ApplicationAS/app/src/main/res/layout-small/activity_main.xml" value="1.279475982532751" />
+        <entry key="..\:/Languages-Programming/CodeBlocks/Android Studio/HomeWork/AllMyProjects/ApplicationAS/app/src/main/res/layout-xlarge/activity_main.xml" value="0.15260416666666668" />
+        <entry key="..\:/Languages-Programming/CodeBlocks/Android Studio/HomeWork/AllMyProjects/ApplicationAS/app/src/main/res/layout/activity_main.xml" value="1.83125" />
         <entry key="..\:/Languages-Programming/CodeBlocks/Android Studio/HomeWork/AllMyProjects/app/src/main/res/layout/activity_content_table_row.xml" value="0.31145833333333334" />
         <entry key="..\:/Languages-Programming/CodeBlocks/Android Studio/HomeWork/AllMyProjects/app/src/main/res/layout/activity_main.xml" value="0.25" />
       </map>

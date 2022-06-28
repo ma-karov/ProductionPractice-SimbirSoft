@@ -8,8 +8,8 @@
     tools:context=".MainActivity">
 
     <ScrollView
-        android:layout_width="383dp"
-        android:layout_height="682dp"
+        android:layout_width="411dp"
+        android:layout_height="683dp"
         android:layout_marginTop="4dp"
         android:fillViewport="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,16 +100,18 @@
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="150dp">
+                        android:layout_height="150dp"
+                        android:gravity="center"
+                        android:weightSum="1">
 
                         <TextView
-                            android:layout_width="116dp"
+                            android:layout_width="193dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="Name Case" />
 
                         <TextView
-                            android:layout_width="134dp"
+                            android:layout_width="185dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="Start Time" />
